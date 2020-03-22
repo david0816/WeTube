@@ -29,6 +29,7 @@ export const postJoin = async (req, res, next) => {
 
 export const getlogin = (req, res) =>
   res.render("login", { pageTitle: "Log in" });
+
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home
@@ -113,7 +114,6 @@ export const userDetail = async (req, res) => {
   } = req;
   try {
     const user = await User.findById(id).populate("videos");
-    console.log(user);
     res.render("userDetail", { pageTitle: "User Detail", user });
   } catch (error) {
     res.redirect(routes.home);
